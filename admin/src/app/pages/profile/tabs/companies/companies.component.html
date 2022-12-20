@@ -1,0 +1,85 @@
+<div class="d-block mt-4 w-100">
+  <div class="row">
+    <div class="col-12 text-right">
+      <add-btn [onClick]="handleShowCompanyForm.bind(this)"></add-btn>
+    </div>
+  </div>
+</div>
+
+<div id="comp-tab" class="tab-pane fade  active show">
+  <div class="my-post-content mt-5">
+
+
+
+    <div class="my-post-content p-5 border card my-5" *ngIf="showAddCompanyForm">
+
+      <div class="post-input">
+
+        <div class="form-group">
+          <label>Company Name</label>
+          <input #name type="email" placeholder="Comapny Name" class="form-control">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>From</label>
+            <input #from type="date" class="form-control">
+          </div>
+          <div class="form-group col-md-4" [ngClass]="currentlyWorking ? 'd-none' : '' ">
+            <label>To</label>
+            <input #till type="date" class="form-control">
+          </div>
+          <div class="form-group col-md-4">
+            <div class="pl-3 mt-5">
+              <input type="checkbox" (change)="handleCurrentlyWorkingCheckbox($event.target.checked)"
+                class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Currently working here</label>
+              <p class="text-primary" *ngIf="currentlyWorking">
+                Present
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>Job Description</label>
+          <textarea #description name="textarea" style="height: 200px" rows="20" class="form-control"
+            placeholder="Job description"></textarea>
+        </div>
+
+        <a (click)="onSubmit(
+        name.value,
+        description.value,
+        from.value,
+        till ? till.value : ''
+      )" class="btn btn-primary">Save</a>
+
+        <a (click)="handleHideCompanyForm()" class="btn mx-3 btn-danger">Discard</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<div class="profile-uoloaded-post jumbotron border-bottom-1 pb-5 mb-5 p-5 border"
+  *ngFor="let company of (userProfile.companies || []); let i = index">
+  <div class="text-right" id="company{{i}}" *ngIf="i !== 0"><i (click)="handleSwapUp(i)"
+      class="fa swap-btn fa-chevron-up fa-2x"></i>
+  </div>
+  <a class="post-title" href="post-details.html">
+    <h3 class="text-black">{{company.name}}</h3>
+    <p class="text-muted">
+      {{company.from}} - {{company.currentlyWorking ? 'Present' : company.to}}
+    </p>
+  </a>
+  <p>{{company.description}}</p>
+  <button class="btn btn-danger mr-2" (click)="deleteCompany(i)"><span class="mr-2"><i
+        class="fa fa-trash"></i></span>Delete</button>
+  <div class="text-right" *ngIf="i !== ((userProfile.companies || []).length - 1)"><i (click)="handleSwapDown(i)"
+      class="fa swap-btn fa-chevron-down fa-2x"></i></div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid text-center">
+  <h4 class="text-center">Sessions type</h4>
+  <select value="upcoming" (change)="handleFilter($event.target.value)" class="form-control d-block mx-auto w-50">
+    <option value="all">All</option>
+    <option value="upcoming" selected>Upcoming Sessions</option>
+    <option value="past">Past Sessions</option>
+    <option value="video">Video Sessions</option>
+  </select>
+
+</div>
+<panel title="sessions" [hasAddButton]="true" [onAddBtnClick]="handleAdd.bind(this)">
+  <div class="bootstrap-media">
+    <div *ngIf="showLoader">
+      <session-loader></session-loader>
+    </div>
+    <div class="row" *ngIf="!showLoader">
+      <div class="col-md-6" *ngFor="let session of sessions">
+        <session-card [session]="session" [editClick]="handleEdit.bind(this)" [viewClick]="handleView.bind(this)"
+          [deleteClick]="handleDelete.bind(this)" [attachFileClick]="handleAttachFile.bind(this)"
+          [hasActionButtons]="true"></session-card>
+      </div>
+    </div>
+  </div>
+</panel>
+
+<div *ngIf="sessionModalConfig.show">
+  <modal [heading]="sessionModalConfig.heading" [onClose]="sessionModalConfig.onClose">
+    <session-form [onClose]="sessionModalConfig.onClose"></session-form>
+  </modal>
+</div>
+
+<div *ngIf="viewSessionModalConfig.show">
+  <modal [heading]="viewSessionModalConfig.heading" [onClose]="viewSessionModalConfig.onClose">
+    <view-session [onClose]="sessionModalConfig.onClose"></view-session>
+  </modal>
+</div>
+
+<div *ngIf="attachFileSessionModalConfig.show">
+  <modal [heading]="attachFileSessionModalConfig.heading" [onClose]="attachFileSessionModalConfig.onClose">
+    <attach-session-file [closeModal]="attachFileSessionModalConfig.onClose"></attach-session-file>
+  </modal>
+</div>

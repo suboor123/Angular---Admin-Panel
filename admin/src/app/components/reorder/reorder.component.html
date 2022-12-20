@@ -1,0 +1,28 @@
+<button class="btn btn-primary" tooltip="Reorder {{title}}" placement="bottom" (click)="handleOpenModal()">Reorder <i
+    class="fa fa-reorder"></i></button>
+
+
+<div *ngIf="reorderModalConfig.show">
+  <modal [heading]="reorderModalConfig.heading" [onClose]="reorderModalConfig.onClose">
+    <div class="card" style="max-height: 70vh">
+      <div style="overflow-y: scroll;">
+        <div class="basic-list-group">
+          <ul class="list-group" [dndList] [dndModel]="data">
+            <li *ngFor="let item of data" [dndType]="'item'" (dndMoved)="onReorderItems(item, data)" [dndDraggable]
+              [dndObject]="item" class="bg-white reorder-list shadow-sm text-left rounded-0 mb-2 list-group-item">
+              <h5 class="h6">
+                <img [src]="item.imageUrl" alt="" class="img-fluid reorder-img">
+                {{item.name}} <div class="float-right">{{item.sideContent || ''}}</div>
+              </h5>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger light" (click)="reorderModalConfig.onClose()">Close</button>
+      <button type="button" class="btn btn-primary" (click)="handleSave()">Save Changes</button>
+    </div>
+  </modal>
+</div>

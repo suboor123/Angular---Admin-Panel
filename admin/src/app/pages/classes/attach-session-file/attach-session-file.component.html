@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="row my-3">
+    <div class="col-md-2 col-sm-6 col-xs-6 p-2 text-center" *ngFor="let file of selectedSession.attachedFiles; let i = index;">
+      <div class="border p-1">
+        <i class="fa fa-file text-warning fa-2x"></i>
+        <div>
+          <a target="_blank" href="{{file.url}}"><small class="text-primary">{{file.name}}</small></a>
+          <button (click)="handleRemove(i)" class="btn w-100 rounded-0  btn-xs d-block btn-danger"><i
+              class="fa fa-trash"></i> Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-12 mt-2 mb-4 text-center" *ngIf="selectedFile">
+      <i class="fa fa-4x fa-file text-warning"></i>
+      <div class="mt-2">{{selectedFile?.name || 'unnamed'}} ({{formatBytes(selectedFile?.size) || 0}})</div>
+    </div>
+    <div class="col-12" [ngClass]="showProgress ? 'd-none' : ''">
+      <input type="text" class="form-control" placeholder="Resource file name" id="file-name">
+    </div>
+    <div class="col-12 mt-4" *ngIf="!showProgress">
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" (change)="onSelectFile($event.target.files)" class="custom-file-input">
+          <label class="custom-file-label">Choose file</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-4" *ngIf="showProgress">
+      <progress-bar [imageUploadProgress]="uploadProgress"></progress-bar>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-footer" *ngIf="!showProgress">
+  <button type="button" class="btn btn-danger light" (click)="closeModal()">Close</button>
+  <button type="button" class="btn btn-primary" (click)="handleUpload()" [disabled]="!selectedFile"><i
+      class="fa fa-upload"></i> Upload</button>
+</div>

@@ -1,0 +1,37 @@
+
+<div class="text-center mt-3">
+  <reorder title="Projects" [beforeReorderModalOpens]="setReorderData.bind(this)" [data]="reorderData"
+  [onReorderItems]="reorderItem" [onSave]="onReorder.bind(this)"></reorder>
+</div>
+
+
+<panel title="projects" [hasAddButton]="true" [onAddBtnClick]="handleAdd.bind(this)">
+    <div class="bootstrap-media">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let project of projects">
+        <div dnd-draggable="item">
+          <project-card [project]="project" [editClick]="handleEdit.bind(this)" [viewClick]="handleView.bind(this)"
+            [deleteClick]="deleteProject.bind(this)" [hasActionButtons]="true"></project-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</panel>
+
+<div *ngIf="projectModalConfig.show">
+  <modal [heading]="projectModalConfig.heading" [onClose]="projectModalConfig.onClose">
+    <project-form [onClose]="projectModalConfig.onClose"></project-form>
+  </modal>
+</div>
+
+<div *ngIf="viewProjectModalConfig.show">
+  <modal [heading]="viewProjectModalConfig.heading" [onClose]="viewProjectModalConfig.onClose">
+    <div *ngIf="selectedProject" style="max-height: 70vh; overflow: scroll;">
+      <div [innerHtml]="selectedProject.content"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger light" (click)="handleCloseViewModal()">Close</button>
+    </div>
+  </modal>
+</div>

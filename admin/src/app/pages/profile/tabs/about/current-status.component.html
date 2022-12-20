@@ -1,0 +1,33 @@
+<div id="about-me" class="tab-pane fade   active show" *ngIf="userProfile">
+    <div class="profile-about-me card p-4 mt-3 border">
+        <div class="pt-4 border-bottom-1 pb-3">
+            <h4 class="text-primary">About Me</h4>
+            <p class="mb-2">{{userProfile.aboutMe}}</p>
+        </div>
+    </div>
+
+    <div class="profile-about-me card p-4 border">
+        <div class="pt-4 border-bottom-1 pb-3">
+            <h4 class="text-primary">Current Status</h4>
+            <textarea class="form-control" #status rows="6">{{userProfile.status || "What's in your mind?"}}</textarea>
+            <button (click)="handleStatusChange(status.value)" class="btn btn-primary w-100 btn-sm mt-3" >Save Changes</button>
+        </div>
+    </div>
+
+    <div class="my-5 card p-4 border" style="display: revert;">
+        <h4 class="text-primary mb-2">Skills</h4>
+        <a *ngFor="let skill of userSkills"routerLink="/tags" class="btn btn-primary light btn-xs mb-1">{{skill.name}}</a>
+    </div>
+
+    <div class="profile-personal-info card p-4 border">
+        <h4 class="text-primary mb-4">Project</h4>
+        <div class="row">
+            <div class="col-md-6" *ngFor="let project of userProjects">
+                <project-card 
+                [project]="project" 
+                ></project-card>
+            </div>
+        </div>
+        <a class="mt-3 d-block mx-auto btn btn-primary" routerLink="/projects">View More</a>
+    </div>
+</div>

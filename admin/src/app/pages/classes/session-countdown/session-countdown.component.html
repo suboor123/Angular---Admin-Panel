@@ -1,0 +1,7 @@
+<div *ngIf="!isClassOver">
+    <countdown  [config]="countDownConfig"></countdown>
+</div>
+
+<div *ngIf="isClassOver">
+    <span class="badge badge-xl badge-warning">Session Ended</span>
+</div>

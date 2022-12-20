@@ -1,0 +1,15 @@
+.reorder-img {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
+.reorder-list {
+  border-left: 10px solid blue;
+  cursor: move;
+}
+
+.reorder-list:active {
+  cursor: grabbing;
+}

@@ -1,0 +1,32 @@
+<button class="btn btn-primary" (click)="handleAdd()"><i class="fa fa-file" aria-hidden="true"></i>
+  <span class="ml-2"> <span *ngIf="!!htmlContent; else notEditable">Edit </span>
+    <ng-template #notEditable>Add </ng-template>
+  </span>
+  <span>Content</span>
+</button>
+
+<button class="btn btn-danger mx-2" (click)="showPreview()" *ngIf="!!htmlContent"><i class="fa fa-eye"></i>
+  Preview</button>
+
+
+<!-- Content Writer Modal -->
+<div *ngIf="htmlEditorModalConfig.show">
+  <modal [heading]="htmlEditorModalConfig.heading" [onClose]="htmlEditorModalConfig.onClose">
+    <angular-editor [config]="editorConfig" style="height: 500px !important" [placeholder]="'Enter text here...'"
+      [(ngModel)]="htmlContent"></angular-editor>
+    <button class="btn btn-primary  mt-3" (click)="handleSaveContent()"><i class="fa fa-save"></i> Save Content</button>
+    <button class="btn btn-danger mt-3 mx-2" (click)="showPreview()" *ngIf="!!htmlContent"><i class="fa fa-eye"></i>
+        Preview</button>
+    
+  </modal>
+</div>
+
+<!-- Preview Modal -->
+<div *ngIf="previewModalConfig.show">
+  <modal [heading]="previewModalConfig.heading" [onClose]="previewModalConfig.onClose">
+<div>
+    <div style="max-height: 500px; overflow: scroll;" [innerHtml]="htmlContent"></div>
+</div>
+<button class="btn btn-secondary mt-3 " (click)="handleEditContent()"><i class="fa fa-pencil"></i> Edit Content</button>
+  </modal>
+</div>

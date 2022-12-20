@@ -1,0 +1,9 @@
+.edit-profile-icon {
+    position: relative;
+    left: 52%;
+    top: 39%;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    border: 1px solid gray;
+}

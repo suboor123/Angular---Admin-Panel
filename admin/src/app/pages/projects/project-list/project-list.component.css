@@ -1,0 +1,9 @@
+.project-img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.reorder-list {
+    border-left: 10px solid blue;
+    cursor:move;
+}

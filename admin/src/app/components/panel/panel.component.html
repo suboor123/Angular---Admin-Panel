@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="col-lg-12 ">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{title | uppercase}}</h3>
+        <span *ngIf="hasAddButton">
+          <add-btn [text]="title" [onClick]="onAddBtnClick"></add-btn>
+        </span>
+      </div>
+      <div class="card-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

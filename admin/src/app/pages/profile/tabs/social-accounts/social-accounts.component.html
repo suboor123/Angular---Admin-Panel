@@ -1,0 +1,28 @@
+<div id="social-acc" class="tab-pane fade active show">
+  <div class="pt-3">
+    <div class="settings-form">
+      <h4 class="text-primary mt-3">Social Accounts Url</h4>
+      <form class="p-4 border card mt-4">
+        <div class="form-group">
+          <label>Linked In</label>
+          <input type="text" #linkedIn value="{{userProfile.social.linkedInUrl}}" placeholder="Enter your Linked In url" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Instagram</label>
+          <input type="text" #instagram value="{{userProfile.social.instagramUrl}}" placeholder="Enter your Instagram url" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Github</label>
+          <input type="text" #github value="{{userProfile.social.githubUrl}}" placeholder="Enter your Github url" class="form-control">
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-primary mb-1 w-100 btn-sm" type="button" (click)="handleUpdateSocialMedia(
+                        github.value,
+                        linkedIn.value,
+                        instagram.value
+                    )">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

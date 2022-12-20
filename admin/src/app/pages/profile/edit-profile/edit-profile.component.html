@@ -1,0 +1,23 @@
+<div class="basic-form">
+  <form [formGroup]="profleForm" (ngSubmit)="onSubmission()">
+    <div class="form-group">
+      <input type="text" formControlName="name" class="form-control input-default " placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <input type="email" formControlName="email" class="form-control input-default " placeholder="Your email address">
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="designation" class="form-control input-default "
+        placeholder="Your designation">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" formControlName="aboutMe" placeholder="Describe yourself" rows="5"
+        id="comment"></textarea>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger light" (click)="onClose()">Close</button>
+  <button type="button" class="btn btn-primary" (click)="onSubmission()">Save Changes</button>
+</div>

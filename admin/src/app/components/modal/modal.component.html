@@ -1,0 +1,16 @@
+<div class="modal backdrop fade bd-example-modal-{{size}} show" tabindex="-1" role="dialog" style="display: block;"
+  aria-modal="true">
+  <div class="modal-dialog modal-{{size}}" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{heading | uppercase}}</h4>
+        <button type="button" (click)="onClose()" class="close" data-dismiss="modal"><span>×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+
+    </div>
+  </div>
+</div>

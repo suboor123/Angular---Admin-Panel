@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-body">
+    <div class="profile-tab">
+      <div class="custom-tab-1">
+        <ul class="nav nav-tabs">
+          <li class="nav-item pointer" *ngFor="let tab of profileTabs; let i = index"><a (click)="handleTabClick(i)"
+              data-toggle="tab" class="nav-link" [ngClass]="activeTab === tab ? 'active' : ''">{{tab}}</a>
+          </li>
+
+        </ul>
+        <div class="tab-content" *ngIf="activeTab === 'Companies'">
+            <companies></companies>
+        </div>
+
+        <div class="tab-content" *ngIf="activeTab === 'About Me'">
+            <current-status></current-status>
+        </div>
+
+        <div class="tab-content" *ngIf="activeTab === 'Social Accounts'">
+            <social-accounts></social-accounts>
+        </div>
+        <!-- Acheivements -->
+        <div class="tab-content" *ngIf="activeTab === 'Acheivements'">
+          <acheivements></acheivements>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>

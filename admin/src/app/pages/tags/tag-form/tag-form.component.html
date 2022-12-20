@@ -1,0 +1,36 @@
+<div style="overflow-y:scroll; max-height: 80vh" [ngClass]="showProgress ? 'd-none' : ''">
+  <div class="mt-3 mb-3 text-center" *ngIf="imageUrl">
+    <img [src]="imageUrl" class="img-fluid w-25 mx-auto d-block">
+  </div>
+  <button class="btn btn-primary btn-sm text-center mx-auto d-block light btn-rounded mb-4"
+    (click)="chooseFile.click()" *ngIf="!isEditMode">Select Image</button>
+  <input type="file" class="d-none" #chooseFile (change)="handleChooseImage($event.target.files)" />
+
+  <div class="form-group">
+    <input type="text" #name class="form-control input-default " placeholder="Tag Name">
+  </div>
+  <div class="form-group">
+    <select #level class="form-control">
+      <option value="">Select an expertise level</option>
+      <option *ngFor="let tag of SkillLevelOption" [value]="tag">{{tag}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <textarea class="form-control" #desc placeholder="Description" rows="5"></textarea>
+  </div>
+
+</div>
+<div *ngIf="showProgress">
+  <div class="mt-3 mb-3 text-center" *ngIf="imageUrl">
+    <img [src]="imageUrl" class="img-fluid w-25 mx-auto d-block">
+  </div>
+  <progress-bar [imageUploadProgress]="imageUploadProgress"></progress-bar>
+</div>
+
+<div class="modal-footer" *ngIf="!showProgress">
+  <button type="button" class="btn btn-danger light" (click)="onClose()">Close</button>
+  <button type="button" class="btn btn-primary"
+    (click)="handleSubmit(name.value, desc.value, level.value)">Save</button>
+
+</div>

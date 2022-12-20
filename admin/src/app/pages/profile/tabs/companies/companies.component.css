@@ -1,0 +1,12 @@
+.swap-btn {
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.swap-btn:hover {
+    border: 1px solid #2953e8;
+    background-color: #2953e8;
+    color: white;
+}

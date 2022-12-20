@@ -1,0 +1,40 @@
+<app-table [onAddClick]="handleAdd.bind(this)" addBtnText="Add Tag" heading="Tags/Skills" [headers]="headers">
+  <tr *ngFor="let tag of tags; let i = index;" class="props-table">
+    <td>{{i + 1}}</td>
+    <td>
+   <img [src]="tag.imageUrl" class="rounded-lg mr-2" width="50" alt="">
+ 
+    </td>
+    <td>{{tag.name}}</td>
+    <td>
+      <div class="d-flex align-items-center"><i
+          [ngClass]="tag.level === 'Expert' ? 'text-success' : (tag.level === 'Medium' ? 'text-warning' : 'text-danger')"
+          class="fa fa-circle  mr-1"></i> {{tag.level}}</div>
+    </td>
+    <td>
+      <div class="d-flex">
+        <a grower (click)="handleView(tag)" tooltip="View" placement="top" class="btn btn-success shadow btn-xs sharp mr-1"><i
+            class="fa fa-eye"></i></a>
+        <a grower (click)="handleEdit(tag)" tooltip="Edit" placement="top" class="btn btn-primary shadow btn-xs sharp mr-1"><i
+            class="fa fa-pencil"></i></a>
+        <a grower (click)="deleteTag(tag.id)" tooltip="Delete" placement="top" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+</app-table>
+
+
+
+<div *ngIf="tagModalConfig.show">
+  <modal [heading]="tagModalConfig.heading" [onClose]="tagModalConfig.onClose">
+    <tag-form [userProfile]="userProfile" [onClose]="tagModalConfig.onClose">
+    </tag-form>
+  </modal>
+</div>
+
+<div *ngIf="viewTagModalConfig.show">
+  <modal [heading]="viewTagModalConfig.heading" [onClose]="viewTagModalConfig.onClose">
+    <view-tag [onClose]="viewTagModalConfig.onClose">
+    </view-tag>
+  </modal>
+</div>

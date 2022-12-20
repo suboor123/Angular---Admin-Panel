@@ -1,0 +1,27 @@
+<div class="card border mb-3" *ngIf="project" grower>
+    <div class="card-header">
+      <h5 class="card-title w-100 d-block">{{project.name}}
+        <div class="float-right" *ngIf="hasActionButtons">
+          <a class="btn btn-success shadow btn-xs sharp mr-1" tooltip="View" placement="top" grower (click)="viewClick(project)"><i
+              class="fa fa-eye"></i></a>
+          <a class="btn btn-primary shadow btn-xs sharp mr-1" tooltip="Edit" placement="top" grower (click)="editClick(project)"><i
+              class="fa fa-pencil"></i></a>
+          <a class="btn btn-danger shadow btn-xs sharp" tooltip="Delete" placement="top" grower (click)="deleteClick(project.id)"><i
+              class="fa fa-trash"></i></a></div>
+      </h5>
+    </div>
+    <div class="card-body">
+      <a *ngIf="project.url !== ''" grower [href]="project.url" target="_blank"
+        class="btn btn-outline-primary btn-xs float-left">Live demo</a>
+      <p class="float-right"><span class="badge badge-xs mr-1 badge-primary" *ngFor="let tag of projectTags">{{tag.name}}</span></p>
+    </div>
+    <img class="card-img-bottom img-fluid project-img" src="{{project.imageUrl}}" alt="Card image cap">
+    <div class="card-footer">
+      <p class="card-text d-inline">
+        <i class="fa fa-eye"></i> {{project.views}}
+      </p>
+      <div class="float-right card-text">
+        {{project.createdAt | date:'EEEE, MMMM d, y'}}
+      </div>
+    </div>
+  </div>

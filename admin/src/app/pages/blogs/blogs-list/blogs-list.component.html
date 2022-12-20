@@ -1,0 +1,38 @@
+<div class="text-center mt-3">
+  <reorder title="Projects" [beforeReorderModalOpens]="setReorderData.bind(this)" [data]="reorderData"
+  [onReorderItems]="reorderItem" [onSave]="onReorder.bind(this)"></reorder>
+</div>
+
+<panel title="blogs" [hasAddButton]="true" [onAddBtnClick]="handleAdd.bind(this)">
+  <div class="bootstrap-media">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let blog of blogs">
+        <blog-card 
+        [blog]="blog" 
+        [deleteClick]="handleDelete.bind(this)"
+        [editClick]="handleEdit.bind(this)"
+        [viewClick]="handleView.bind(this)"
+        [hasActionButtons]="true"
+        ></blog-card>
+      </div>
+    </div>
+  </div>
+</panel>
+
+<div *ngIf="blogModalConfig.show">
+  <modal [heading]="blogModalConfig.heading" [onClose]="blogModalConfig.onClose">
+    <blog-form [onClose]="blogModalConfig.onClose"></blog-form>
+  </modal>
+</div>
+
+<div *ngIf="viewBlogModalConfig.show">
+  <modal [heading]="viewBlogModalConfig.heading" [onClose]="viewBlogModalConfig.onClose">
+    <div *ngIf="selectedBlog" style="max-height: 70vh; overflow: scroll;">
+      <div [innerHtml]="selectedBlog.content"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger light" (click)="handleCloseViewModal()">Close</button>
+    </div>
+  </modal>
+</div>

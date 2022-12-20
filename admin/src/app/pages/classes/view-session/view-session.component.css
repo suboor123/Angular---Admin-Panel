@@ -1,0 +1,5 @@
+.tag-img {
+    background-color: white;
+    border: 3px solid teal;
+    object-fit: contain;
+}

@@ -1,0 +1,21 @@
+<div style="overflow-y:scroll; max-height: 70vh" *ngIf="tag">
+    <div class="card mb-3">
+        <img class="rounded d-block mx-auto text-center img-fluid w-50" [src]="tag.imageUrl" alt="{{tag.name}}">
+        <div class="card-header">
+            <h5 class="card-title">{{tag.name}}
+                <span class="badge ml-2 light"
+                [ngClass]="tag.level === 'Expert' ? 'badge-success' : (tag.level === 'Medium' ? 'badge-warning' : 'badge-danger')"
+                >{{tag.level}}</span>
+            </h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{tag.description}}</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger light" (click)="onClose()">Close</button>
+
+</div>

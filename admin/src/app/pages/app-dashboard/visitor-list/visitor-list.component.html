@@ -1,0 +1,34 @@
+<div class="card message-bx" style="max-height: 400px;">
+  <div class="card-header shadow-sm" style="display: block;">
+    <div>
+      <h4 class="fs-20 mb-0 font-w600 w-100 text-black mb-sm-0 mb-2">Visitors ({{visitors.length}})
+        <div class="float-right">
+          <select (change)="handleSelectVisitorType($event)" class="form-control" style="height: auto;">
+            <option value="all">All</option>
+            <option value="suboor">Suboor</option>
+            <option value="prashant">Prashant</option>
+          </select>
+        </div>
+      </h4>
+
+
+    </div>
+  </div>
+  <div class="card-body" style="overflow: scroll;">
+    <div class="media mb-4" *ngFor="let item of visitors">
+      <div class="media-body d-sm-flex justify-content-between d-block align-items-center">
+        <div class="mr-sm-3 mr-0">
+          <h6><a class="text-black">{{item.country}}</a></h6>
+          <p class="mb-0">Someone visited from {{item.country}}, {{item.city}} with IP {{item.ip}} </p>
+          <span class="fs-14">
+            <div timeago [date]="item.date"></div>
+          </span>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="media mb-4" *ngIf="visitors.length === 0">
+      <img src="assets/404.svg" alt="" class="img-fluid mx-auto d-block">
+    </div>
+  </div>

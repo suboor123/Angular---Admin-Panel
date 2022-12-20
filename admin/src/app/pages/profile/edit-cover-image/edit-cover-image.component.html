@@ -1,0 +1,20 @@
+<div class="overflow-hidden" *ngIf="userProfile">
+    <div class="text-center p-3 " style="background-image: url('images/big/img1.jpg');">
+        <div class="profile-photo pointer" (click)="chooseImage.click()">
+            <img src="{{coverImage}}" class="img-fluid w-50" alt="">
+        </div>
+        <button *ngIf="!showProgress" type="button" class="btn btn-sm mt-3 light btn-primary" (click)="chooseImage.click()">Choose Image</button>
+        <input type="file" accept="image/png, image/jpeg, image/jpg, image/gif" class="d-none" (change)="handleChooseImage($event.target.files)" #chooseImage />
+
+    </div>
+
+    <div  *ngIf="showProgress">
+    <progress-bar [imageUploadProgress]="imageUploadProgress"></progress-bar>
+    </div>
+</div>
+
+<div class="modal-footer" *ngIf="!showProgress">
+    <button type="button" class="btn btn-danger light" (click)="onClose()">Close</button>
+    <button type="button" [disabled]="!coverImageFile" (click)="handleUpload()" class="btn  btn-primary"><span class="btn-icon-left text-primary"><i class="fa fa-upload color-primary"></i>
+    </span>Upload</button>
+  </div>

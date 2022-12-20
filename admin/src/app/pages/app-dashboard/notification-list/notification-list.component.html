@@ -1,0 +1,33 @@
+<div class="card message-bx" style="max-height: 400px;">
+  <div class="card-header shadow-sm" style="display: block;">
+    <div>
+      <h4 class="fs-20 mb-0 font-w600 w-100 text-black mb-sm-0 mb-2">Notifications ({{notifications.length}})
+        <div class="float-right px-3"><i tooltip="Refresh" (click)="handleRefreshNotification()" class="fa fa-refresh mt-2 pointer d"></i></div>
+        <a style="float:right" class="btn btn-danger btn-sm" (click)="handleClearAll()">clear all</a>
+      </h4>
+
+
+    </div>
+  </div>
+  <div class="card-body" style="overflow: scroll;">
+    <div class="media mb-4" *ngFor="let item of notifications">
+      <div class="image-bx mr-sm-4 mr-2"><img [src]="item.imageUrl" alt="" class="rounded-circle img-1" style="object-fit: cover;">
+      </div>
+      <div class="media-body d-sm-flex justify-content-between d-block align-items-center">
+        <div class="mr-sm-3 mr-0">
+          <h6><a class="text-black">{{item.entityName}}</a></h6>
+          <p class="mb-0">
+            Someone <b>{{item.type}}</b> your {{item.entity === 'blogs' ? 'blog' : removeS(item.entity)}}
+            <b>{{item.entityName}}</b> total views are <b>{{item.totalViews}}</b>.
+          </p><span class="fs-14">
+            <div timeago [date]="item.createdAt"></div>
+          </span>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="media mb-4" *ngIf="notifications.length === 0">
+      <img src="assets/404.svg" alt="" class="img-fluid mx-auto d-block">
+    </div>
+  </div>

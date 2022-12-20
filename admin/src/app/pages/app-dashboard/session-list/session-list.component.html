@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header shadow-sm">
+    <div class="mr-2">
+      <h4 class="fs-20 mb-0 font-w600 text-black">
+        <span *ngIf="showLoadMore">Upcoming </span>LIVE sessions</h4>
+      <span class="fs-14"></span>
+    </div>
+    <a (click)="AddSession()" tooltip="Add Session" placement="top" class="plus-icon pointer"><i class="fa fa-plus"
+        aria-hidden="true"></i></a>
+  </div>
+  <div class="card-body" style="overflow-y: scroll; height: 600px;">
+    <div class="media mb-4" *ngIf="sessions.length === 0">
+      <img src="assets/404.svg" alt="" class="img-fluid mx-auto d-block">
+    </div>
+    <div class="border-bottom pb-4 mb-4" *ngFor="let session of sessions">
+      <h4 class="mb-2  font-weight-bold">{{session.name}}</h4>
+      <div class="mb-3"><i class="fa fa-calendar-o mr-1" aria-hidden="true"></i>On
+        {{session.date | date:'EEEE, MMMM d, y'}}</div>
+      <p class="text-muted">{{session.description}}</p>
+      <div class="row ">
+        <div class="col-6">
+          <session-countdown [session]="session"></session-countdown>
+        </div>
+      </div>
+    </div>
+
+    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+      <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+    </div>
+    <div class="ps__rail-y" style="top: 0px; height: 620px; right: 0px;">
+      <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 514px;"></div>
+    </div>
+  </div>
+  <div class="card-footer" *ngIf="showLoadMore">
+    <a (click)="viewAll()" tooltip="Fetch All Sessions" placement="top"
+      class="btn d-block btn-primary light dlab-load-more">Load All Sessions</a>
+  </div>
+
+  <div class="card-footer" *ngIf="!showLoadMore">
+    <a (click)="viewUpcoming()" tooltip="Fetch Upcoming Sessions" placement="top"
+      class="btn d-block btn-primary light dlab-load-more">Load Upcoming Sessions</a>
+  </div>
+</div>
+
+<div *ngIf="sessionModalConfig.show">
+  <modal [heading]="sessionModalConfig.heading" [onClose]="sessionModalConfig.onClose">
+    <session-form [onClose]="sessionModalConfig.onClose"></session-form>
+  </modal>
+</div>

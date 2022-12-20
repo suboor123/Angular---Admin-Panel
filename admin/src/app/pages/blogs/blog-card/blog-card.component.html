@@ -1,0 +1,25 @@
+<div class="card border mb-3" *ngIf="blog" grower>
+    <div class="card-header">
+      <h5 class="card-title w-100 d-block">{{blog.name}}
+        <div class="float-right" *ngIf="hasActionButtons">
+          <a class="btn btn-success shadow btn-xs sharp mr-1" tooltip="View" placement="top" grower (click)="viewClick(blog)"><i
+              class="fa fa-eye"></i></a>
+          <a class="btn btn-primary shadow btn-xs sharp mr-1" tooltip="Edit" placement="top" grower (click)="editClick(blog)"><i
+              class="fa fa-pencil"></i></a>
+          <a class="btn btn-danger shadow btn-xs sharp" grower tooltip="Delete" placement="top" (click)="deleteClick(blog.id)"><i
+              class="fa fa-trash"></i></a></div>
+      </h5>
+    </div>
+    <div class="card-body">
+      <p class="text-center"><span class="badge badge-xs mr-1 badge-primary" *ngFor="let tag of blogTags">{{tag.name}}</span></p>
+    </div>
+    <img class="card-img-bottom img-fluid blog-img" src="{{blog.imageUrl}}" alt="Card image cap">
+    <div class="card-footer">
+      <p class="card-text d-inline">
+        <i class="fa fa-eye"></i> {{blog.views}}
+      </p>
+      <div class="float-right card-text">
+        {{blog.createdAt | date:'EEEE, MMMM d, y'}}
+      </div>
+    </div>
+  </div>

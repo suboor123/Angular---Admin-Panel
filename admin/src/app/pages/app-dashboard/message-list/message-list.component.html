@@ -1,0 +1,33 @@
+<div class="card message-bx mb-5" style="max-height: 400px;">
+  <div class="card-header shadow-sm" style="display: block;">
+    <div>
+      <h4 class="fs-20 mb-0 font-w600 w-100 text-black mb-sm-0 mb-2">Recent Messages
+        <a style="float:right" class="btn btn-primary mx-2 btn-sm" (click)="handleReadAll()">Mark All as read</a>
+        <a style="float:right" class="btn btn-danger btn-sm" (click)="handleClearMessages()">clear all</a>
+      </h4>
+  
+     
+    </div>
+  </div>
+  <div class="card-body" style="overflow: scroll;">
+    <div class="media mb-4" *ngFor="let item of messages">
+      <div class="media-body d-sm-flex justify-content-between d-block align-items-center">
+        <div class="mr-sm-3 mr-0 w-100">
+          <div class="float-right "><span class="text-muted mr-1">Mark as read</span>
+            <input (change)="toggleSeen($event, item)" [checked]="item.seen" type="checkbox"></div>
+          <h6 class="fs-16 font-w600 mb-sm-2 mb-0"><a class="text-black">{{item.name}}</a></h6>
+          <a class="text-primary text-small" href="mailto:{{item.name}}">{{item.email}}</a>
+          <p class="text-black mb-sm-3 mb-0">{{item.message}}</p>
+          <span class="fs-14 mt-0">
+            <div timeago [date]="item.createdAt || d"></div>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="media mb-4" *ngIf="messages.length === 0">
+        <img src="assets/404.svg" alt="" class="img-fluid mx-auto d-block">
+      </div>
+
+  </div>
+</div>

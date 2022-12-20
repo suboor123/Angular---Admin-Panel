@@ -1,0 +1,14 @@
+<panel [hasAddButton]="onAddClick !== undefined" [onAddBtnClick]="onAddClick" [title]="heading">
+  <div class="table-responsive">
+    <table class="table table-responsive-md table-bordered table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headers" ><strong>{{head}}</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-content></ng-content>
+      </tbody>
+    </table>
+  </div>
+</panel>

@@ -1,0 +1,17 @@
+<div class="">
+    <div class="card-header d-block">
+        <h4 class="card-title">Uploading...</h4>
+        <p class="mb-0 subtitle">Uploading image please wait...</p>
+    </div>
+    <div class="card-body">
+        <h6>Progress
+            <span class="pull-right">{{imageUploadProgress}}%</span>
+        </h6>
+        <div class="progress ">
+            <div class="progress-bar bg-primary progress-animated" 
+            [ngStyle]="{'width': imageUploadProgress + '%', 'height': '6px'}" role="progressbar">
+                <span class="sr-only">{{imageUploadProgress}}% Complete</span>
+            </div>
+        </div>
+    </div>
+</div>

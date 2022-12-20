@@ -1,0 +1,40 @@
+<div class="card border mb-3" *ngIf="session" grower>
+  <div class="card-header">
+    <h5 class="card-title w-100 d-block">{{session.name}}
+      <div class="float-right" *ngIf="hasActionButtons">
+        <a *ngIf="session.videoUrl" target="_blank" [href]="session.videoUrl"
+          class="btn btn-danger shadow btn-xs text-white sharp mr-1" tooltip="Video" placement="top" grower><i
+            class="fa fa-youtube"></i></a>
+        <a class="btn btn-warning shadow btn-xs text-white sharp mr-1" (click)="attachFileClick(session)"
+          tooltip="Attach Files" placement="top" grower><i class="fa fa-file"></i></a>
+        <a class="btn btn-success shadow btn-xs sharp mr-1" tooltip="View" placement="top" grower
+          (click)="viewClick(session)"><i class="fa fa-eye"></i></a>
+        <a class="btn btn-primary shadow btn-xs sharp mr-1" tooltip="Edit" placement="top" grower
+          (click)="editClick(session)"><i class="fa fa-pencil"></i></a>
+        <a class="btn btn-danger shadow btn-xs sharp mr-1" tooltip="Delete" placement="top" grower
+          (click)="deleteClick(session.id)"><i class="fa fa-trash"></i></a>
+      </div>
+    </h5>
+  </div>
+  <div class="card-body">
+    <a *ngIf="session.url !== '' && showJoinBtn" grower [href]="session.url" target="_blank"
+      class="btn btn-outline-primary btn-xs float-left">Join Stream </a>
+    <a *ngIf="!showJoinBtn" grower (click)="attachFileClick(session)"
+      class="btn btn-outline-primary btn-xs float-left">Attached Files ({{session.attachedFiles?.length || 0}})</a>
+    <p class="float-right"><span class="badge badge-xs mr-1 badge-primary"
+        *ngFor="let tag of sessionTags">{{tag.name}}</span></p>
+
+  </div>
+  <img class="card-img-bottom img-fluid project-img" src="{{session.imageUrl}}" alt="Card image cap">
+  <div class="text-center my-3">
+    <session-countdown [session]="session"></session-countdown>
+  </div>
+  <div class="card-footer">
+    <p class="card-text d-inline">
+      <i class="fa fa-eye"></i> {{session.views}}
+    </p>
+    <div class="float-right card-text">
+      On {{session.date | date:'EEEE, MMMM d, y'}}
+    </div>
+  </div>
+</div>

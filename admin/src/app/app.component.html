@@ -1,0 +1,15 @@
+<span *ngIf="userProfile && router.url !== '/unauthenticate'">
+  <header></header>
+  <div class="content-body">
+    <router-outlet></router-outlet>
+  </div>
+  <sidebar></sidebar>
+</span>
+
+<div *ngIf="!userProfile">
+  <initial-loader></initial-loader>
+</div>
+
+<span *ngIf="router.url === '/unauthenticate'">
+  <login></login>
+</span>

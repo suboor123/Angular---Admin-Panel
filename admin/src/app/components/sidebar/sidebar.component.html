@@ -1,0 +1,57 @@
+<div class="dlabnav">
+  <div class="dlabnav-scroll">
+    <ul class="metismenu" id="menu">
+      <li><a routerLink="/profile" aria-expanded="false">
+          <i class="flaticon-381-user-4"></i>
+          <span class="nav-text">Profile</span>
+        </a>
+      </li>
+
+      <li><a routerLink="/dashboard" aria-expanded="false">
+          <i class="flaticon-381-networking"></i>
+          <span class="nav-text">Dashboard</span>
+        </a>
+      </li>
+
+      <li><a routerLink="/projects" aria-expanded="false">
+          <i class="flaticon-381-folder-10"></i>
+          <span class="nav-text">Projects</span>
+        </a>
+      </li>
+
+      <li><a routerLink="/blogs" aria-expanded="false">
+          <i class="flaticon-381-newspaper"></i>
+          <span class="nav-text">Blogs</span>
+        </a>
+      </li>
+
+      <li><a routerLink="/tags" aria-expanded="false">
+          <i class="flaticon-381-switch-4"></i>
+          <span class="nav-text">Tags/Skills</span>
+        </a>
+      </li>
+
+      <li><a routerLink="/classes" aria-expanded="false">
+          <i class="flaticon-381-video-clip"></i>
+          <span class="nav-text">LIVE Classes</span>
+        </a>
+      </li>
+
+      <li><a (click)="handleLogout()" class="pointer" aria-expanded="false">
+          <i class="flaticon-381-turn-off"></i>
+          <span class="nav-text">Logout</span>
+        </a>
+      </li>
+    </ul>
+    <a class="add-menu-sidebar d-block pointer" id="add-project-btn" tooltip="Add Project" placement="top" (click)="handleAddProject()">+
+      New Project</a>
+
+  </div>
+</div>
+
+
+<div *ngIf="projectModalConfig.show">
+  <modal [heading]="projectModalConfig.heading" [onClose]="projectModalConfig.onClose">
+    <project-form [onClose]="projectModalConfig.onClose"></project-form>
+  </modal>
+</div>
